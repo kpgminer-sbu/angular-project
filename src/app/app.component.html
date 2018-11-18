@@ -1,0 +1,38 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+	<h1>
+		{{ title }}
+	</h1>
+</div>
+<!-- <ng-select></ng-select> -->
+<div style="width: 300px; margin-bottom: 20px;">
+  <h3>Choose Organism</h3>
+	<ng-multiselect-dropdown
+	  [placeholder]="'Please select'"
+	  [data]="dropdownList1"
+	  [(ngModel)]="selectedItems1"
+	  [settings]="dropdownSettings1"
+	  (onSelect)="onItemSelect($event)"
+	  (onSelectAll)="onSelectAll($event)"
+	>
+	</ng-multiselect-dropdown>
+
+</div>
+<div style="width: 300px; margin-bottom: 20px;">
+  <h3>Choose pathway(s)</h3>
+	<ng-multiselect-dropdown
+	  [placeholder]="'Please select'"
+	  [data]="dropdownList2"
+	  [(ngModel)]="selectedItems2"
+	  [settings]="dropdownSettings2"
+	  (onSelect)="onItemSelect($event)"
+	  (onSelectAll)="onSelectAll($event)"
+	>
+	</ng-multiselect-dropdown>
+
+</div>
+
+<button type="button" class="button">Get Pathway Genes!</button>
+
+<!-- DO NOT REMOVE -->
+<router-outlet></router-outlet>
