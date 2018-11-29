@@ -35,6 +35,10 @@ export class AppComponent implements OnInit {
   dropdownList2  = [];
   selectedItems1 = [];
   selectedItems2 = [];
+   
+  games = []
+  setClickedRow : Function;
+
   // signature for the selected items
   // this.selectedItems1 = [
   //   { item_id: 3, item_text: 'Pune' },
@@ -42,6 +46,37 @@ export class AppComponent implements OnInit {
   // ];
 
   ngOnInit() {
+
+    this.games = [{
+            pathway : "Glycolysis",
+            description: " Xbox One, PS4, PC",
+            genes : "HK3,HK2,HK1"
+        },
+        {
+            pathway : "Pentose phosphate pathway",
+            description: "Win, PS3, PS4",
+            genes : "GPI,G6PD,PGLS"
+        },
+        {
+            pathway : "Citrate Cycle(TCA cycle)",
+            description: "PS4",
+            genes : "TS,ACLY"
+        },
+        {
+            pathway : "Resident Evil Zero HD Remaster",
+            description: "Win, PS3, PS4, X360, XBO",
+            genes : "GPI,G6PD"
+        },
+        {
+            pathway : "Lego Marvel's Avengers",
+            description: "Win, X360, XBO, PS3, PS4, PSVita, WiiU, 3DS",
+            genes : "HK1"
+        }];
+        this.setClickedRow = function(index){
+            this.selectedRow = index;
+        }
+
+
   	// api calls here
   	this.dropdownList1 = this.hitApiService.getOrganisms();
   }

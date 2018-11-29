@@ -15,3 +15,15 @@ h1 {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+
+.table tr.active td {
+  background-color:#123456 !important;
+  color: white;
+  border-color:black;
+
+}
+
+table, th, td {
+    border: 1px solid black;
+}
