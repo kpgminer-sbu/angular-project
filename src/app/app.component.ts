@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       textField: 'item_text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      itemsShowLimit: 10,
       allowSearchFilter: true
   };
   dropdownList1  = [];
@@ -44,17 +44,20 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   	// api calls here
   	this.dropdownList1 = this.hitApiService.getOrganisms();
-    this.dropdownList2 = this.hitApiService.getPathways( this.selectedItems1 );
-    [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-
   }
-  onItemSelect(item: any) {
+  onItemSelect1(item: any) {
+    console.log(item);
+    this.dropdownList2 = this.hitApiService.getPathways( this.selectedItems1);
+    console.log("dd populated");
+  }
+  onItemDeSelect1(item: any) {
+    if (this.selectedItems1.length=== 0){
+      this.dropdownList2=[];
+      this.selectedItems2 =[];
+    }
+    console.log("dd cleared");
+  }
+  onItemSelect2(item: any) {
     console.log(item);
   }
   onSelectAll(items: any) {

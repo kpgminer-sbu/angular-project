@@ -46,6 +46,8 @@ export class HitApiService {
 		return type1Data;
 	}
 	getPathways(data) {
+		console.log("selected item:");
+		console.log(data);
 		var type1Data = [
 			{ item_id: 1, item_text: 'Mumbai' },
 			{ item_id: 2, item_text: 'Bangaluru' },
