@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 // external imports after this point only
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 		// external imports after this point only
 		NgMultiSelectDropDownModule,
+		Ng2SmartTableModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
