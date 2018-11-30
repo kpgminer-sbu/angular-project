@@ -26,13 +26,15 @@ export class HitApiService {
 	getOrganisms() {
 		console.log("here1");
 
-		this.http.get(`http://rest.kegg.jp/list/organism`, httpOptions)
-		// this.http.get(`https://jsonplaceholder.typicode.com/todos/1`)
-      	.pipe(
-        	tap(_ => console.log('fetched heroes')),
-        	// catchError(this.handleError('getHeroes', []))
-      	)
-      	.subscribe();
+
+		this.http.get(`http://localhost:3000/api/getOrganisms`)
+		.pipe(
+			tap( response => {
+				console.log("inside")
+				return response;
+			}),
+		)
+		.subscribe();
 
 		console.log("here2");
 
