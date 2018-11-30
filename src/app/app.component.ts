@@ -87,21 +87,27 @@ data = [
         genes : "HK1"
     }
   ];
-  dropdownList1  = [];
+  organismList  = [];
   dropdownList2  = [];
   selectedItems1 = [];
   selectedItems2 = [];
-  //setClickedRow : Function;
-
-  // signature for the selected items
-  // this.selectedItems1 = [
-  //   { item_id: 3, item_text: 'Pune' },
-  //   { item_id: 4, item_text: 'Navsari' }
-  // ];
 
   ngOnInit() {
   	// api calls here
-  	this.dropdownList1 = this.hitApiService.getOrganisms();
+  	this.hitApiService.getOrganisms()
+    .subscribe( (result) => {
+       let lines = result.split("\n");
+       let tempArray = [];
+       for(var i=0; i<lines.length; i++) {
+         let values = lines[i].split('\t');
+         let tempObj = {
+           'item_id': values[1],
+           'item_text': values[2]
+         };
+         tempArray.push(tempObj);
+       }
+       this.organismList = tempArray;
+    });
   }
   onItemSelect1(item: any) {
     console.log(item);
