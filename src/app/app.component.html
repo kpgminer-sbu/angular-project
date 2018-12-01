@@ -1,17 +1,18 @@
 <!-- filters start here -->
-<div class="container bg-light paddingBottom-15">
+<div class="bg-light paddingBottom-20">
+<div class="container">
 
 	<!-- intro description starts here -->
-	<div class="container row text-secondary marginTop-5 paddingLeft-70">
-		<h5>Retrieve pathway genes from KEGG pathway database</h5>
+	<div class="container row text-secondary marginTop-5">
+		<h6>Retrieve pathway genes from KEGG database</h6>
 	</div>
 	<!-- intro description starts here -->
 
 	<!-- filter selection starts here -->
-	<div class="container row paddingLeft-70">
+	<div class="container row">
 
 		<!-- organism selection starts here -->
-		<div class="marginRight-50 width-350">
+		<div class="marginRight-50 width-400">
 			<h6>Choose Organism</h6>
 			<ng-multiselect-dropdown	[placeholder] = "'Select Organism'"
 										[data]        = "organismList"
@@ -26,7 +27,7 @@
 
 
 		<!-- pathways selection starts here -->
-		<div class="marginRight-50 width-350">
+		<div class="marginRight-50 width-400">
 			<h6>Choose Pathway(s)</h6>
 			<ng-multiselect-dropdown	[placeholder] = "'Select Pathways'"
 										[data]        = "pathwayList"
@@ -49,6 +50,7 @@
 	</div>
 	<!-- filter selection ends here -->
 
+</div>
 </div>
 <!-- filters end here -->
 

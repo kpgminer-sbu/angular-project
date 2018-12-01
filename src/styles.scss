@@ -7,12 +7,12 @@
 	margin-right: 50px;
 }
 
-.width-350 {
-	width: 350px;
+.width-400 {
+	width: 400px;
 }
 
-.paddingBottom-15 {
-	padding-bottom: 15px;
+.paddingBottom-20 {
+	padding-bottom: 20px;
 }
 
 .height-40 {
@@ -25,4 +25,22 @@
 
 .paddingLeft-70 {
 	padding-left: 70px;
+}
+
+hr {
+	margin-top: 0px;
+}
+
+.navbar-brand {
+	color: #91ff71 !important;
+}
+
+.bg-navbar {
+	background-color: #504f5b;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
