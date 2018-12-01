@@ -1,61 +1,67 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-	<h1>
-		{{ title }}
-	</h1>
-</div>
-<!-- <ng-select></ng-select> -->
-<div style="width: 300px; margin-bottom: 20px;">
-  <h3>Choose Organism</h3>
-	<ng-multiselect-dropdown
-	  [placeholder]="'Please select'"
-	  [data]="organismList"
-	  [(ngModel)]="selectedItems1"
-	  [settings]="dropdownSettings1"
-	  (onSelect)="onItemSelect1($event)"
-		(onDeSelect)="onItemDeSelect1($event)"
-	>
-	</ng-multiselect-dropdown>
+<!-- filters start here -->
+<div class="container bg-light paddingBottom-15">
+
+	<!-- intro description starts here -->
+	<div class="container row text-secondary marginTop-5 paddingLeft-70">
+		<h5>Retrieve pathway genes from KEGG pathway database</h5>
+	</div>
+	<!-- intro description starts here -->
+
+	<!-- filter selection starts here -->
+	<div class="container row paddingLeft-70">
+
+		<!-- organism selection starts here -->
+		<div class="marginRight-50 width-350">
+			<h6>Choose Organism</h6>
+			<ng-multiselect-dropdown	[placeholder] = "'Select Organism'"
+										[data]        = "organismList"
+										[(ngModel)]   = "selectedOrganism"
+										[settings]    = "dropdownSettings1"
+										(onSelect)    = "organismSelected($event)"
+										(onDeSelect)  = "organismDeSelected($event)"
+			>
+			</ng-multiselect-dropdown>
+		</div>
+		<!-- organism selection ends here -->
+
+
+		<!-- pathways selection starts here -->
+		<div class="marginRight-50 width-350">
+			<h6>Choose Pathway(s)</h6>
+			<ng-multiselect-dropdown	[placeholder] = "'Select Pathways'"
+										[data]        = "pathwayList"
+										[(ngModel)]   = "selectedPathways"
+										[settings]    = "dropdownSettings2"
+										(onSelect)    = "pathwaySelected($event)"
+										(onSelectAll) = "pathwaySelectedAll($event)"
+			>
+			</ng-multiselect-dropdown>
+		</div>
+		<!-- filter selection ends here -->
+
+
+		<!-- button to get genes starts here -->
+		<button (click)="fetchGenes()" type="button" class="btn btn-primary height-40 marginTop-25">
+			Get Pathway Genes
+		</button>
+		<!-- button to get genes ends here -->
+
+	</div>
+	<!-- filter selection ends here -->
 
 </div>
-<div style="width: 300px; margin-bottom: 20px;">
-  <h3>Choose pathway(s)</h3>
-	<ng-multiselect-dropdown
-	  [placeholder]="'Please select'"
-	  [data]="dropdownList2"
-	  [(ngModel)]="selectedItems2"
-	  [settings]="dropdownSettings2"
-	  (onSelect)="onItemSelect2($event)"
-	  (onSelectAll)="onSelectAll($event)"
-	>
-	</ng-multiselect-dropdown>
+<!-- filters end here -->
 
-</div>
-<!--
-<div style="width: 800px; float : right; margin-bottom: 20px;">
-	<table class="table table-hover" BORDERCOLOR=RED >
-	    <thead>
-	        <tr>
-	            <th>Pathway</th>
-	            <th>Description</th>
-	            <th>Genes</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <tr *ngFor="let game of games; let i = index" (click)="setClickedRow(i)" [class.active]="i == selectedRow">
-	            <td>{{game.pathway}}</td>
-	            <td>{{game.description}}</td>
-	            <td>{{game.genes}}</td>
-	        </tr>
-	    </tbody>
-	</table>
-</div>
--->
 
-<button type="button" class="button">Get Pathway Genes!</button>
-<div class="table">
-<ng2-smart-table [settings]="table_settings" [source]="data"></ng2-smart-table>
+<hr/>
+
+
+<!-- table to show result starts here -->
+<div class="container">
+	<ng2-smart-table [settings]="tableSettings" [source]="geneData"></ng2-smart-table>
 </div>
+<!-- table to show result ends here -->
+
 
 <!-- DO NOT REMOVE -->
 <router-outlet></router-outlet>

@@ -4,8 +4,7 @@
 var express = require('express');
 var cors = require('cors');
 var http = require("http");
-var baseUrl = 'http://rest.kegg.jp';
-
+var axios = require("axios");
 
 /* ======================== */
 /*  Module Initialisations  */
@@ -15,28 +14,39 @@ server.set('port', 3000);
 server.use( cors() );
 
 server.listen(server.get('port'), function() {
-	console.log('Express server listening on port ' + server.get('port'));
+	console.log('Express server listening on port ' + server.get('port') + '!\n');
 });
 
 
 /* ======================== */
 /*     API End - points     */
 /* ======================== */
-server.all("/api/getOrganisms", function(req, res) {
-	console.log("Request reached to /api/getOrganisms");
+server.all("/apiProxy", async function(req, res) {
+	// log entry to function
+	console.log("====API request received====\n");
 
-	var pathUrl = '/list/organism';
-	let soapRequest = http.get( baseUrl+pathUrl, soapResponse => {
-		soapreplyx = "";
+	// check sanity of target url
+	let targetUrl = req.query['targetUrl'];
+	console.log(" TargetURl => " + targetUrl + "\n");
+	if( !targetUrl ) {
+		console.log("Not a valid targetUrl!");
+		console.log("====API call not made====\n\n");
+		return res.send();
+	}
 
-		soapResponse.on('data', chunk => {
-			soapreplyx += chunk;
-		});
+	// make call and send respnonse accordingly
+	try{
+		let response = await axios.get(targetUrl);
+		let data = response.data.toString();
+		res.send( JSON.stringify( {success: true, data: data}) );
+	}
+	catch(e) {
+		console.log(" **ERROR =>");
+		console.error(e);
+		res.send( JSON.stringify( {success: false}) );
+	}
 
-		soapResponse.on('end', () => {
-			console.log("Sending response for the request!\n");
-			return res.send( JSON.stringify(soapreplyx) );
-		});
-	});
+	// log exit from function
+	console.log("====API response sent back====\n\n");
 
 });
