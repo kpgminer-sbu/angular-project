@@ -42,7 +42,7 @@
 
 
 		<!-- button to get genes starts here -->
-		<button (click)="fetchGenes()" type="button" class="btn btn-primary height-40 marginTop-25">
+		<button (click)="fetchGenes()" type="button" class="btn btn-success height-40 marginTop-25">
 			Get Pathway Genes
 		</button>
 		<!-- button to get genes ends here -->
@@ -57,6 +57,14 @@
 
 <hr/>
 
+
+<!-- button to get genes starts here -->
+<div class="container">
+	<button (click)="downloadCSV()" type="button" class="btn btn-light btn-sm float-right">
+		Download CSV
+	</button>
+	<!-- button to get genes ends here -->
+</div>
 
 <!-- table to show result starts here -->
 <div class="container">
