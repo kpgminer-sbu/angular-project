@@ -217,4 +217,31 @@ export class AppComponent implements OnInit {
 		finalObject['genes'] = genes;
 		return finalObject;
 	}
+
+	downloadCSV() {
+		// check if table has values, to avoid downloading empty files
+		if( this.geneData.length==1 )
+			return;
+
+		// get the content now
+		let csvContent = "data:text/csv;charset=utf-8,";
+		let csvHeaders = ["Pathway" , "Description", "Genes"];
+		csvContent += csvHeaders.join(",") + "\r\n";
+
+		this.geneData.forEach(function(rowArray) {
+			// do not change for dummy
+			if( rowArray.pathway != " " ) {
+				let row = rowArray.pathway.trim() + ",";
+				row += rowArray.description || " " + ",";
+				row += rowArray.genes.split(',').join(";");
+				csvContent += row + "\r\n";
+			}
+		});
+		var encodedUri = encodeURI(csvContent);
+		var link = document.createElement("a");
+		link.setAttribute("href", encodedUri);
+		link.setAttribute("download", "kpgminer_"+ new Date().valueOf() +".csv");
+		document.body.appendChild(link);
+		link.click();
+	}
 }
